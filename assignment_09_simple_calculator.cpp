@@ -68,8 +68,118 @@
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 using namespace std;
 
+// Addition
+double add(double a, double b) {
+    return a + b;
+}
+
+// Subtraction
+double subtract(double a, double b) {
+    return a - b;
+}
+
+// Multiplication
+double multiply(double a, double b) {
+    return a * b;
+}
+
+// Division (caller checks for divide-by-zero before calling)
+double divide(double a, double b) {
+    return a / b;
+}
+
+// Modulus (works on the integer parts of a and b)
+int findModulus(int a, int b) {
+    return a % b;
+}
+
+// Exponentiation using pow() from <cmath>
+double power(double base, double exponent) {
+    return pow(base, exponent);
+}
+
+// Display the calculator menu
+void displayMenu() {
+    cout << "============================" << endl;
+    cout << "     SIMPLE CALCULATOR" << endl;
+    cout << "============================" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Modulus" << endl;
+    cout << "6. Exponentiation" << endl;
+    cout << "7. Quit" << endl;
+    cout << "Select an operation (1-7): ";
+}
+
+int main() {
+    int choice;
+    bool running = true;
+
+    cout << fixed << setprecision(2);
+
+    while (running) {
+        displayMenu();
+        cin >> choice;
+
+        if (choice == 7) {
+            cout << "Goodbye!" << endl;
+            running = false;
+            cout << endl;
+            continue;
+        }
+
+        if (choice < 1 || choice > 7) {
+            cout << "Error: Invalid choice. Please select a number between 1 and 7." << endl;
+            cout << endl;
+            continue;
+        }
+
+        double a, b;
+        cout << "Enter first number : ";
+        cin >> a;
+        cout << "Enter second number: ";
+        cin >> b;
+
+        switch (choice) {
+            case 1:
+                cout << "Result: " << a << " + " << b << " = " << add(a, b) << endl;
+                break;
+            case 2:
+                cout << "Result: " << a << " - " << b << " = " << subtract(a, b) << endl;
+                break;
+            case 3:
+                cout << "Result: " << a << " * " << b << " = " << multiply(a, b) << endl;
+                break;
+            case 4:
+                if (b == 0) {
+                    cout << "Error: Cannot divide by zero." << endl;
+                } else {
+                    cout << "Result: " << a << " / " << b << " = " << divide(a, b) << endl;
+                }
+                break;
+            case 5:
+                if (b == 0) {
+                    cout << "Error: Cannot perform modulus by zero." << endl;
+                } else {
+                    cout << "Result: " << (int)a << " % " << (int)b << " = "
+                         << findModulus((int)a, (int)b) << endl;
+                }
+                break;
+            case 6:
+                cout << "Result: " << a << " ^ " << b << " = " << power(a, b) << endl;
+                break;
+        }
+
+        cout << endl;
+    }
+
+    return 0;
+}
